@@ -1,0 +1,21 @@
+#pragma once
+#include <iostream>
+#include "Vector2.h"
+#include "RigidBody.h"
+#include "Circle.h"
+#include <SFML/Graphics.hpp>
+#include <SFML/System/Vector2.hpp>
+
+class Player
+{
+public:
+	int radius = 0;
+	Vector2* playerPos;
+	RigidBody* rb;
+	Circle* playerCircle;
+
+	Player(int r);
+	~Player();
+	void updatePlayer(sf::RenderWindow& window);
+};
+
