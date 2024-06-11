@@ -1,33 +1,33 @@
 #include "Player.h"
 
-Player::Player(int r) : radius(r)
+Player::Player(int r) : radius(r), playerPos(800, 750), rb(20, 0.99f), playerCircle(50)
 {
-	playerPos = new Vector2(0, 750);
-	rb = new RigidBody(10000, 0.5f);
-	playerCircle = new Circle(50);
 }
 
-Player::~Player()
-{
-	delete playerPos;
-	delete rb;
-	delete playerCircle;
-}
 
 void Player::updatePlayer(sf::RenderWindow& window)
 {
-	
-	char input;
-	std::cin >> input;
-	/*
-	if (input == 68) 
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		playerPos->x += 0.01;
+		rb.addForce(-3);
+	} 
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) 
+	{
+		rb.addForce(3);
 	}
-	 */
-	rb->updatePhysics(0);
-	Vector2 moveVector(rb->speed, 0);
-	// playerPos = playerPos + moveVector;
-	playerPos->x += 0.01;
-	playerCircle->draw(window, sf::Vector2f(playerPos->x, playerPos->y));
+	rb.updatePhysics();
+
+	Vector2 moveVector(rb.velocity, 0);
+	playerPos = playerPos + moveVector;
+
+	if (playerPos.x > 1400) 
+	{
+		playerPos.x = 1400;
+	}
+	else if (playerPos.x < 200) 
+	{
+		playerPos.x = 200;
+	}
+
+	playerCircle.draw(window, sf::Vector2f(playerPos.x, playerPos.y));
 }

@@ -9,9 +9,6 @@
 #include <SFML/Graphics.hpp>
 
 /*
-Zorg ervoor dat je een speler hebt die aan de onderkant heen en weer kan bewegen door middel van pijltjestoetsen.
-- PLAYER CLASS
-
 Zorg ervoor dat bovenin het scherm objecten (enemies) spawnen die heen en weer bewegen terwijl ze naar beneden vallen.
 - ENEMY CLASS   
 
@@ -26,15 +23,11 @@ Zorg ervoor dat je score ergens in beeld zichtbaar is.
 - SCORE CLASS
 
 Zorg ervoor dat de game eindigt met een win/verlies scherm.
-- WINSCREEN FUNCTION
-
-Zorg ervoor dat je een eigen implementatie gebruikt van de wiskundige principes, 
-        zoals een eigen Vector2 class en Rigidbody. Je mag van SFML enkel de 'setters' (zoals setPosition) 
-        gebruiken als het gaat om berekeningen, de rest 
-        (zoals vermenigvuldigen, optellen, addforce, etc) moet in je eigen implementatie gebeuren. 
+- WINSCREEN FUNCTION 
 */
 
-// Git Test
+
+// Key Event SFML
 
 int main()
 {

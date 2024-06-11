@@ -10,12 +10,11 @@ class Player
 {
 public:
 	int radius = 0;
-	Vector2* playerPos;
-	RigidBody* rb;
-	Circle* playerCircle;
+	Vector2 playerPos;
+	RigidBody rb;
+	Circle playerCircle;
 
 	Player(int r);
-	~Player();
 	void updatePlayer(sf::RenderWindow& window);
 };
 

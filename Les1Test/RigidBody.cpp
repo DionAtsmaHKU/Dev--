@@ -1,16 +1,18 @@
 #include "RigidBody.h"
 
-RigidBody::RigidBody(float m, float co) : mass(m), fCo(co)
+RigidBody::RigidBody(float m, float f) : mass(m), friction(f)
 {
-	gravityForce = 9.8 * mass;
 }
 
-void RigidBody::updatePhysics(float impulse)
+void RigidBody::addForce(float impulse) 
 {
 	moveForce += impulse;
-	frictionForce = fCo * -gravityForce;
-	totalForce = moveForce + frictionForce;
+}
 
-	acceleration = totalForce / mass;
-	speed += acceleration;
+void RigidBody::updatePhysics()
+{
+	moveForce *= deltaTime;
+	acceleration =  moveForce / mass;
+	velocity += acceleration;
+	velocity *= friction;
 }

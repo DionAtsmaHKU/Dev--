@@ -8,7 +8,7 @@ public:
 	float y = 0;
 	Vector2(float xStart, float yStart);
 	float calcLength();
-	Vector2 operator+(Vector2 other);
-	Vector2 operator-(Vector2 other);
+	Vector2 operator+(Vector2 const& other);
+	Vector2 operator-(Vector2 const& other);
 };
 
