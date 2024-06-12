@@ -1,40 +1,40 @@
 // Main file
 #include <iostream>
+#include <random>
+#include <SFML/Graphics.hpp>
+
 #include "Shape.h"
 #include "Circle.h"
 #include "Rectangle.h"
 #include "Player.h"
+#include "Enemy.h"
 #include "Vector2.h"
 #include "RigidBody.h"
-#include <SFML/Graphics.hpp>
+#include "Score.h"
 
 /*
-Zorg ervoor dat bovenin het scherm objecten (enemies) spawnen die heen en weer bewegen terwijl ze naar beneden vallen.
-- ENEMY CLASS   
-
-Zorg ervoor dat zowel de speler als de enemies versnellen (en vertraging) door middel van forces en friction.
-- VECTOR2 CLASS, RIGIDBODY CLASS
-
-Zorg ervoor dat er onderin collision is tussen de speler en de objecten.
-- COLLISION CALC FUNCTION
-
 Zorg ervoor dat je punten kunt krijgen voor het vangen of ontwijken, afhankelijk van je gekozen spelvorm. 
 Zorg ervoor dat je score ergens in beeld zichtbaar is.
 - SCORE CLASS
 
 Zorg ervoor dat de game eindigt met een win/verlies scherm.
-- WINSCREEN FUNCTION 
+- WINSCREEN FUNCTION
 */
-
-
-// Key Event SFML
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(1600, 900), "SFML works!");
-    auto testRectangle = Rectangle{ 100, 75 };
-    auto testCircle = Circle{ 30 };
+    sf::RenderWindow window(sf::VideoMode(1280, 960), "Parachute");
     auto player = Player{ 5 };
+    Enemy enemies[20];
+    for (int i = 0; i < 20; i++) 
+    {
+        int range = 1200 - 80 + 1;
+        int num = rand() % range + 200;
+        enemies[i].enemyPos.x = num;
+        enemies[i].enemyPos.y = -200 - i * 250;
+        enemies[i].timer = num - 800;
+    }
+    auto score = Score{};
     
     // run the program as long as the window is open
     while (window.isOpen())
@@ -47,9 +47,13 @@ int main()
         }
         window.clear();
 
-        // testRectangle.draw(window);
-        // testCircle.draw(window);
         player.updatePlayer(window);
+        for (int i = 0; i < 20; i++) 
+        {        
+            enemies[i].updateEnemy(window);
+            enemies[i].checkCollion(player, score);
+        }
+
         window.display();
     }
     return 0;

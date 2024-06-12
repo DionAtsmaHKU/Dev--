@@ -4,9 +4,8 @@
 
 class Circle : public Shape
 {
-private:
-	int radius = 0;
 public:
+	int radius = 0;
 	Circle(int r);
 	float calcArea();
 	void draw(sf::RenderWindow& window, sf::Vector2f pos);

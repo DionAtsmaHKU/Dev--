@@ -9,7 +9,6 @@
 class Player
 {
 public:
-	int radius = 0;
 	Vector2 playerPos;
 	RigidBody rb;
 	Circle playerCircle;

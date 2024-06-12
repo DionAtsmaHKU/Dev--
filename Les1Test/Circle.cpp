@@ -15,5 +15,6 @@ void Circle::draw(sf::RenderWindow& window, sf::Vector2f pos)
 	sf::CircleShape shape(radius);
 	shape.setFillColor(sf::Color::Red);
 	shape.setPosition(pos.x, pos.y);
+	shape.setOrigin(radius, radius);
 	window.draw(shape);
 }
