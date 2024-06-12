@@ -9,11 +9,11 @@ void Player::updatePlayer(sf::RenderWindow& window)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		rb.addForce(-3);
+		rb.addForce(-forceToAdd);
 	} 
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) 
 	{
-		rb.addForce(3);
+		rb.addForce(forceToAdd);
 	}
 	rb.updatePhysics();
 

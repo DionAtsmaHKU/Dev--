@@ -13,6 +13,8 @@ public:
 	RigidBody rb;
 	Circle playerCircle;
 
+	float forceToAdd = 6;
+
 	Player(int r);
 	void updatePlayer(sf::RenderWindow& window);
 };

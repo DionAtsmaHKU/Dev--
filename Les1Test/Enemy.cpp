@@ -14,7 +14,7 @@ Enemy::~Enemy()
 
 void Enemy::updateEnemy(sf::RenderWindow& window)
 {
-	if (timer > 1500) {
+	if (timer > swingTime) {
 		rb.addForce(forceToAdd);
 		forceToAdd *= -1;
 		timer = 0;
@@ -22,7 +22,7 @@ void Enemy::updateEnemy(sf::RenderWindow& window)
 	else { timer++; }
 	rb.updatePhysics();
 
-	Vector2 moveVector(rb.velocity, 0.15);
+	Vector2 moveVector(rb.velocity, speed);
 	enemyPos = enemyPos + moveVector;
 
 	if (enemyPos.x > 1130)

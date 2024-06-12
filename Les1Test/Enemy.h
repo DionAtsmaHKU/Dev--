@@ -11,6 +11,8 @@ class Enemy
 {
 public:
 	int timer = 0;
+	int swingTime = 750;
+	float speed = 0.3f;
 	float forceToAdd = 20;
 	Vector2 enemyPos;
 	RigidBody rb;
