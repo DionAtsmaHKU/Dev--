@@ -7,21 +7,12 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-#include "Shape.h"
 #include "Circle.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "Vector2.h"
 #include "RigidBody.h"
 #include "Score.h"
-
-/*
-Zorg ervoor dat je score ergens in beeld zichtbaar is.
-- SCORE CLASS
-
-Zorg ervoor dat de game eindigt met een win/verlies scherm.
-- WINSCREEN FUNCTION
-*/
 
 int main()
 {
@@ -48,10 +39,14 @@ int main()
         int num = rand() % range + 200;
         enemies[i].enemyPos.x = num;
         enemies[i].enemyPos.y = -200 - i * 250;
-        enemies[i].timer = num - 800;
+        enemies[i].timer = num - 200;
         enemies[i].enemySprite = enemySprite;
     }
-    auto score = Score{};
+
+    // Initialising font and score
+    sf::Font font;
+    font.loadFromFile("Fonts/RetroGaming.ttf");
+    auto score = Score{font};
     
     // Run the program as long as the window is open
     while (window.isOpen())
@@ -65,13 +60,18 @@ int main()
         window.clear();
 
         window.draw(bgSprite);
+        score.showScore(window);
         player.updatePlayer(window);
+
         for (int i = 0; i < 20; i++) 
         {        
             enemies[i].updateEnemy(window);
             enemies[i].checkCollion(player, score);
         }
-
+        if (enemies[19].enemyPos.y > 1100) { // gameOver after all 20 enemies have fallen
+            score.gameOver = true;
+        }
+        
         window.display();
     }
     return 0;
