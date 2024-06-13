@@ -6,21 +6,29 @@
 #include "Score.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/System/Vector2.hpp>
+#include <SFML/System/Clock.hpp>
 
+// The enemy class concerns the objects that fall from the top of the screen,
+// which the player has to try and catch. The enemies swing from side to side.
+// This class also checks if collision with the player is occurring. 
+// It contains a rigidbody, Vector2, collision circle, and sprite.
 class Enemy
 {
 public:
 	int timer = 0;
-	int swingTime = 750;
-	float speed = 0.3f;
-	float forceToAdd = 20;
+	int swingTime = 1000;
+	float speed = 300;
+	float forceToAdd = 1000;
+
 	Vector2 enemyPos;
 	RigidBody rb;
 	Circle enemyCircle;
+	sf::Sprite enemySprite;
 
-	Enemy(int r, int x, int y);
+	sf::Clock deltaClock;
+	sf::Time deltaTime;
+
 	Enemy();
-	~Enemy();
 	void updateEnemy(sf::RenderWindow& window);
 	void checkCollion(Player player, Score& score);
 };

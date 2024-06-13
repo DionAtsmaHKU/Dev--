@@ -1,11 +1,14 @@
-// Main file
+// Dion Atsma, 1a, Game Development
+// This program is a game where the goal is for the player to catch a number
+// of falling parachute guys. The player moves with the arrow keys, and gets
+// a point for every guy caught, which is displayed at the end of the game.
+// A total of 20 guys fall from the sky, so 20 is the maximum score.
+
 #include <iostream>
-#include <random>
 #include <SFML/Graphics.hpp>
 
 #include "Shape.h"
 #include "Circle.h"
-#include "Rectangle.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "Vector2.h"
@@ -13,7 +16,6 @@
 #include "Score.h"
 
 /*
-Zorg ervoor dat je punten kunt krijgen voor het vangen of ontwijken, afhankelijk van je gekozen spelvorm. 
 Zorg ervoor dat je score ergens in beeld zichtbaar is.
 - SCORE CLASS
 
@@ -23,8 +25,22 @@ Zorg ervoor dat de game eindigt met een win/verlies scherm.
 
 int main()
 {
+    // Initialising window
     sf::RenderWindow window(sf::VideoMode(1280, 960), "Parachute");
-    auto player = Player{ 5 };
+
+    // Initialising sprites
+    sf::Texture bgTexture;
+    sf::Texture enemyTexture;
+    sf::Texture playerTexture;
+    bgTexture.loadFromFile("Sprites/ParachuteBG.png");
+    enemyTexture.loadFromFile("Sprites/ParachuteGuy.png");
+    playerTexture.loadFromFile("Sprites/ParachuteBoat.png");
+    sf::Sprite bgSprite(bgTexture);
+    sf::Sprite enemySprite(enemyTexture);
+    sf::Sprite playerSprite(playerTexture);
+
+    // Initialising player and enemies, enemies get spawned at random x-positions
+    auto player = Player{playerSprite};
     Enemy enemies[20];
     for (int i = 0; i < 20; i++) 
     {
@@ -33,10 +49,11 @@ int main()
         enemies[i].enemyPos.x = num;
         enemies[i].enemyPos.y = -200 - i * 250;
         enemies[i].timer = num - 800;
+        enemies[i].enemySprite = enemySprite;
     }
     auto score = Score{};
     
-    // run the program as long as the window is open
+    // Run the program as long as the window is open
     while (window.isOpen())
     {
         sf::Event event;
@@ -47,6 +64,7 @@ int main()
         }
         window.clear();
 
+        window.draw(bgSprite);
         player.updatePlayer(window);
         for (int i = 0; i < 20; i++) 
         {        

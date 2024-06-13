@@ -137,20 +137,16 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="RigidBody.cpp" />
     <ClCompile Include="Score.cpp" />
-    <ClCompile Include="Shape.cpp" />
     <ClCompile Include="Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circle.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="Rectangle.h" />
     <ClInclude Include="RigidBody.h" />
     <ClInclude Include="Score.h" />
-    <ClInclude Include="Shape.h" />
     <ClInclude Include="Vector2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

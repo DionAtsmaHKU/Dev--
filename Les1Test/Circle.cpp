@@ -1,20 +1,14 @@
 #include "Circle.h"
-#include "Shape.h"
-
 Circle::Circle(int r) : radius(r)
 {
 }
 
-float Circle::calcArea()
+// Draws the circle based on the radius, given position and given sprite.
+void Circle::draw(sf::RenderWindow& window, sf::Vector2f pos,
+	sf::Sprite sprite)
 {
-	return 3.14159f * radius * radius;
-}
-
-void Circle::draw(sf::RenderWindow& window, sf::Vector2f pos)
-{
-	sf::CircleShape shape(radius);
-	shape.setFillColor(sf::Color::Red);
-	shape.setPosition(pos.x, pos.y);
-	shape.setOrigin(radius, radius);
-	window.draw(shape);
+	sprite.setPosition(pos.x, pos.y);
+	sprite.setOrigin(radius, radius); // Makes pos the centre of the circle
+	sprite.setScale(1.5f, 1.5f);
+	window.draw(sprite);
 }
